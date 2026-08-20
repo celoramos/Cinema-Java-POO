@@ -1,51 +1,55 @@
+package br.com.cinema.modelos.principal;
 import br.com.cinema.modelos.Episodio;
 import br.com.cinema.modelos.Filme;
 import br.com.cinema.modelos.FiltroRecomendacao;
 import br.com.cinema.modelos.Serie;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Principal {
     public static void main(String[] args) {
-        Filme meuFilme = new Filme("Homem-Aranha 2", 2004);
-        meuFilme.setAssinaturaVip(true);
-        meuFilme.avaliar(9.5);
+        Filme Filme1 = new Filme("Homem-Aranha 2", 2004);
+        Filme1.setAssinaturaVip(true);
+        Filme1.avaliar(9.5);
 
-        Filme outroFilme = new Filme("Star Wars: O Império Contra-Ataca", 1980);
-        outroFilme.setAssinaturaVip(false);
-        outroFilme.avaliar(8.5);
 
-        meuFilme.exibirFichaFilme();
-        meuFilme.avaliar(9);
-        meuFilme.avaliar(9);
-        meuFilme.avaliar(9);
-        meuFilme.avaliar(9);
-        System.out.println("\nAs avalições do filme: " + meuFilme.getNomeFilme() + " foram: " + meuFilme.mediaAvaliacao);
+        Filme1.exibirFichaFilme();
+        Filme1.avaliar(9);
+        Filme1.avaliar(9);
+        Filme1.avaliar(9);
+        Filme1.avaliar(9);
 
-        Serie nomeSerie = new Serie("The Bear" , 2022);
-        nomeSerie.setTemporadas(5);
-        nomeSerie.setEpsTemporada(10);
-        nomeSerie.setAtiva(true);
-        nomeSerie.Serie();
+
+        Filme Filme2 = new Filme("Star Wars: O Império Contra-Ataca", 1980);
+        Filme2.setAssinaturaVip(false);
+        Filme2.avaliar(8.5);
+        System.out.println("\nAs avalições do filme: " + Filme1.getNomeFilme() + " foram: " + Filme1.mediaAvaliacao);
+
+        var Filme3 = new Filme("Alien: O oitavo passageiro", 1979);
+        Filme3.setAssinaturaVip(true);
+        Filme3.avaliar(8.5);
+
+        Serie Serie1 = new Serie("The Bear" , 2022);
+        Serie1.setTemporadas(5);
+        Serie1.setEpsTemporada(10);
+        Serie1.setAtiva(true);
+        Serie1.Serie();
 
         Episodio primeiro = new Episodio();
         primeiro.setNumero(0);
-        primeiro.setSerie(nomeSerie);
+        primeiro.setSerie(Serie1);
         primeiro.setTotalViews(100);
 
+
         FiltroRecomendacao filtro = new FiltroRecomendacao();
-        filtro.filtrar(meuFilme);
+        filtro.filtrar(Filme1);
         filtro.filtrar(primeiro);
 
-        var filmeMarcelo = new Filme("Alien: O oitavo passageiro", 1979);
-        filmeMarcelo.setAssinaturaVip(true);
-        filmeMarcelo.avaliar(8.5);
 
         ArrayList<Filme> listaDeFilmes = new ArrayList<>();
-        listaDeFilmes.add(meuFilme);
-        listaDeFilmes.add(filmeMarcelo);
-        listaDeFilmes.add(outroFilme);
+        listaDeFilmes.add(Filme1);
+        listaDeFilmes.add(Filme3);
+        listaDeFilmes.add(Filme2);
         System.out.println("Sua lista possui " + listaDeFilmes.size() + " Filmes");
         for (Filme f : listaDeFilmes) {
             System.out.println(f.getNomeFilme() + " (" + f.getAnoLancamento() + ")");
@@ -59,7 +63,7 @@ public class Principal {
 //                System.out.println("Filme encontrado: " + f.getNomeFilme());
 //            }
 
-        filtro.filtrar(filmeMarcelo);
-        Object objeto = filmeMarcelo;
+        filtro.filtrar(Filme3);
+        Object objeto = Filme3;
     }
 }}

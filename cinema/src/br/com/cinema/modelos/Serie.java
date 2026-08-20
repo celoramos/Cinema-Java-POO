@@ -54,5 +54,4 @@ public class Serie extends Titulo {
         }
         System.out.println();
     }
-
 }
