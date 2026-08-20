@@ -2,6 +2,10 @@ package br.com.cinema.modelos;
 public class Filme extends Titulo implements Classificavel {
     private String diretor;
 
+    public Filme(String nome, int anoLancamento) {
+        super(nome, anoLancamento);
+    }
+
     public String getDiretor() {
         return diretor;
     }
@@ -18,5 +22,11 @@ public class Filme extends Titulo implements Classificavel {
     public int getClassificacao() {
         return (int) mediaAvaliacao / 2;
     }
-}
 
+    @Override
+    public String toString() {
+        return "\nFilme: " +this.getNomeFilme() + " (" +this.getAnoLancamento() + ")";
+    }
+
+
+}

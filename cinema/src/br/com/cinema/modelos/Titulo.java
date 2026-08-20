@@ -7,6 +7,10 @@ public abstract class Titulo {
     private double somaAvaliacoes;
     public double mediaAvaliacao;
 
+    public Titulo(String nomeFilme, int anoLancamento) {
+        this.nomeFilme = nomeFilme;
+        this.anoLancamento = anoLancamento;
+    }
 
     public void setNomeFilme(String nomeFilme) {
         this.nomeFilme = nomeFilme;
@@ -34,8 +38,8 @@ public abstract class Titulo {
 
 
     public void exibirFichaFilme() {
-        System.out.println("Nome do br.com.cinema.modelos.Filme: " + nomeFilme);
-        System.out.println("Ano do Lançamento: " + anoLancamento);
+//        System.out.println("Nome do br.com.cinema.modelos.Filme: " + nomeFilme);
+//        System.out.println("Ano do Lançamento: " + anoLancamento);
     }
 
     public void avaliar(double avaliacao) {

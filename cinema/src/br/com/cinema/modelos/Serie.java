@@ -1,10 +1,18 @@
 package br.com.cinema.modelos;
 public class Serie extends Titulo {
-    private String tituloSerie;
+    private String nomeSerie;
     private int temporadas;
     private boolean ativa;
     private int epsTemporada;
 
+    public Serie(String nomeSerie, int anoLancamento) {
+        super(nomeSerie, anoLancamento);
+        this.nomeSerie = nomeSerie;
+    }
+
+    public String getNomeSerie() {
+        return nomeSerie;
+    }
 
     public int getTemporadas() {
         return temporadas;
@@ -15,8 +23,10 @@ public class Serie extends Titulo {
     public int getEpsTemporada() {
         return epsTemporada;
     }
+
+
     public String getTituloSerie() {
-        return tituloSerie;
+        return nomeSerie;
     }
 
 
@@ -29,15 +39,20 @@ public class Serie extends Titulo {
     public void setEpsTemporada(int epsTemporada) {
         this.epsTemporada = epsTemporada;
     }
-    public void setTituloSerie(String tituloSerie) {
-        this.tituloSerie = tituloSerie;
+    public void setTituloSerie(String nomeSerie) {
+        this.nomeSerie = nomeSerie;
     }
 
-@Override
-public void Serie() {
-        System.out.println("Nome da Serie: " + tituloSerie);
+    @Override
+    public void Serie() {
+        System.out.println("\nNome da Serie: " + getNomeFilme());
         System.out.println("Temporadas: " + temporadas);
-        System.out.println("Ativa: " + ativa);
+        if (ativa == true) {
+            System.out.println("Ativa: Sim");
+        } else {
+            System.out.println("Ativa: Não");
+        }
+        System.out.println();
     }
 
 }
