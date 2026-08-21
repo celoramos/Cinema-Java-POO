@@ -60,14 +60,43 @@ public class Principal {
 
 
         Scanner buscaTitulo = new Scanner(System.in);
-        System.out.println("Digite o nome do filme que deseja buscar: ");
-        String busca = buscaTitulo.nextLine();
-        for (Filme f : listaDeFilmes)
-            if (f.getNomeFilme().equalsIgnoreCase(busca)) {
-                System.out.println("Filme encontrado: " + f.getNomeFilme());
+        boolean encontrado = false;
+        do {
+            System.out.println("Digite o nome do filme que deseja buscar: ");
+            String busca = buscaTitulo.nextLine();
+            encontrado = false;
+
+            for (Filme f : listaDeFilmes) {
+                String nomeNormalizado = f.getNomeFilme()
+                        .toLowerCase()
+                        .replace("-", "")
+                        .replace(" ", "");
+
+                String buscaNormalizada = busca
+                        .toLowerCase()
+                        .replace("-", "")
+                        .replace(" ", "");
+
+                if (nomeNormalizado.equals(buscaNormalizada)) {
+                    System.out.println("Filme encontrado: "
+                            + f.getNomeFilme()
+                            + " (" + f.getAnoLancamento() + ")"
+                            + " com média de avaliação: " + f.mediaAvaliacao);
+                    encontrado = true;
+                    break;
+                }
             }
 
+            if (!encontrado) {
+                System.out.println("Filme não encontrado. Digite novamente.");
+            }
+
+        } while (!encontrado);
         filtro.filtrar(Filme3);
         Object objeto = Filme3;
     }
-}}
+
+    private static String normalizar(String busca) {
+        return busca.toLowerCase().replace("-", "").replace(" ", "");
+    }
+}
