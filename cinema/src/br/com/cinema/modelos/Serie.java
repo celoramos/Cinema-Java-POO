@@ -13,7 +13,6 @@ public class Serie extends Titulo {
     public String getNomeSerie() {
         return nomeSerie;
     }
-
     public int getTemporadas() {
         return temporadas;
     }
@@ -23,8 +22,6 @@ public class Serie extends Titulo {
     public int getEpsTemporada() {
         return epsTemporada;
     }
-
-
     public String getTituloSerie() {
         return nomeSerie;
     }

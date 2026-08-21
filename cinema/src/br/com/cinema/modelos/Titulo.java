@@ -1,5 +1,5 @@
 package br.com.cinema.modelos;
-public abstract class Titulo {
+    public abstract class Titulo  implements Comparable<Titulo> {
     private String nomeFilme;
     private int anoLancamento;
     private boolean assinaturaVip;
@@ -47,6 +47,11 @@ public abstract class Titulo {
         somaAvaliacoes += avaliacao;
         mediaAvaliacao = somaAvaliacoes / totalAvaliacoes;
     }
-    public abstract void Serie();
-}
+    @Override
+        public int compareTo(Titulo outroTitulo) {
+            return this.nomeFilme.compareTo(outroTitulo.getNomeFilme());
+        }
+
+        public abstract void Serie();
+    }
 
