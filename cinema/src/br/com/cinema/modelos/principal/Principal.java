@@ -3,32 +3,35 @@ import br.com.cinema.modelos.Episodio;
 import br.com.cinema.modelos.Filme;
 import br.com.cinema.modelos.FiltroRecomendacao;
 import br.com.cinema.modelos.Serie;
-
+import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Principal {
     public static void main(String[] args) {
+        // primeiro filme
         Filme Filme1 = new Filme("Homem-Aranha 2", 2004);
         Filme1.setAssinaturaVip(true);
         Filme1.avaliar(9.5);
 
-
+        // ficha do filme 1 (vou tirar depois pra aparecer so a classificacao)
         Filme1.exibirFichaFilme();
         Filme1.avaliar(9);
         Filme1.avaliar(9);
         Filme1.avaliar(9);
         Filme1.avaliar(9);
 
-
+        // filme 2
         Filme Filme2 = new Filme("Star Wars: O Império Contra-Ataca", 1980);
         Filme2.setAssinaturaVip(false);
         Filme2.avaliar(8.5);
         System.out.println("\nAs avalições do filme: " + Filme1.getNomeFilme() + " foram: " + Filme1.mediaAvaliacao);
 
+        // filme 3
         var Filme3 = new Filme("Alien: O oitavo passageiro", 1979);
         Filme3.setAssinaturaVip(true);
         Filme3.avaliar(8.5);
 
+        // the bear
         Serie Serie1 = new Serie("The Bear" , 2022);
         Serie1.setTemporadas(5);
         Serie1.setEpsTemporada(10);
@@ -40,7 +43,7 @@ public class Principal {
         primeiro.setSerie(Serie1);
         primeiro.setTotalViews(100);
 
-
+// filtro
         FiltroRecomendacao filtro = new FiltroRecomendacao();
         filtro.filtrar(Filme1);
         filtro.filtrar(primeiro);
@@ -53,15 +56,16 @@ public class Principal {
         System.out.println("Sua lista possui " + listaDeFilmes.size() + " Filmes");
         for (Filme f : listaDeFilmes) {
             System.out.println(f.getNomeFilme() + " (" + f.getAnoLancamento() + ")");
+        }
 
-            // futura atualizacao do sistema
-//        Scanner buscaTitulo = new Scanner(System.in);
-//        System.out.println("Digite o nome do filme que deseja buscar: ");
-//        String busca = buscaTitulo.nextLine();
-//        for (Filme f : listaDeFilmes)
-//            if (f.getNomeFilme().equalsIgnoreCase(busca)) {
-//                System.out.println("Filme encontrado: " + f.getNomeFilme());
-//            }
+
+        Scanner buscaTitulo = new Scanner(System.in);
+        System.out.println("Digite o nome do filme que deseja buscar: ");
+        String busca = buscaTitulo.nextLine();
+        for (Filme f : listaDeFilmes)
+            if (f.getNomeFilme().equalsIgnoreCase(busca)) {
+                System.out.println("Filme encontrado: " + f.getNomeFilme());
+            }
 
         filtro.filtrar(Filme3);
         Object objeto = Filme3;
