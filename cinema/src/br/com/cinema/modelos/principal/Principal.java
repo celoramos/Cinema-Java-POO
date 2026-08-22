@@ -67,17 +67,10 @@ public class Principal {
             encontrado = false;
 
             for (Filme f : listaDeFilmes) {
-                String nomeNormalizado = f.getNomeFilme()
-                        .toLowerCase()
-                        .replace("-", "")
-                        .replace(" ", "");
+                String nomeNormalizado = normalizar(f.getNomeFilme());
+                String buscaNormalizada = normalizar(busca);
 
-                String buscaNormalizada = busca
-                        .toLowerCase()
-                        .replace("-", "")
-                        .replace(" ", "");
-
-                if (nomeNormalizado.equals(buscaNormalizada)) {
+                if (nomeNormalizado.contains(buscaNormalizada)) {
                     System.out.println("Filme encontrado: "
                             + f.getNomeFilme()
                             + " (" + f.getAnoLancamento() + ")"
@@ -96,7 +89,17 @@ public class Principal {
         Object objeto = Filme3;
     }
 
-    private static String normalizar(String busca) {
-        return busca.toLowerCase().replace("-", "").replace(" ", "");
+    private static String normalizar(String texto) {
+    if (texto == null) {
+        return "";
+    }
+
+    String normalizado = java.text.Normalizer.normalize(texto, java.text.Normalizer.Form.NFD);
+    normalizado = normalizado.replaceAll("\\p{M}", "");
+    return normalizado
+            .toLowerCase()
+            .replace("-", "")
+            .replace(" ", "")
+            .replaceAll("[^a-z0-9]", "");
     }
 }

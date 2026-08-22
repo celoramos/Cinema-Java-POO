@@ -51,4 +51,8 @@ public class Serie extends Titulo {
         }
         System.out.println();
     }
+    @Override
+    public String toString() {
+        return "Série: " + this.getNomeFilme() + " (" + this.getAnoLancamento() + ")";
+    }
 }
