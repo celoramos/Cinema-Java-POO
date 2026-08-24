@@ -3,9 +3,11 @@ import br.com.cinema.modelos.Filme;
 import br.com.cinema.modelos.Serie;
 import br.com.cinema.modelos.Titulo;
 
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
 //lista dos filmes
 public class ListaPrincipal {
@@ -21,7 +23,7 @@ public class ListaPrincipal {
 
 
 // lista dos filmes e séries
-        ArrayList<Titulo> lista = new ArrayList<>();
+        List<Titulo> lista = new ArrayList<>();
         lista.add(filme1);
         lista.add(Filme3);
         lista.add(Filme2);
