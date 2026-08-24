@@ -2,11 +2,10 @@ package br.com.cinema.modelos.principal;
 import br.com.cinema.modelos.Filme;
 import br.com.cinema.modelos.Serie;
 import br.com.cinema.modelos.Titulo;
-
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.LinkedList;
 import java.util.List;
+import java.util.LinkedList;
 import java.util.Map;
 
 //lista dos filmes

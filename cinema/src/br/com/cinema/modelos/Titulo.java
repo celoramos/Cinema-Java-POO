@@ -1,6 +1,10 @@
 package br.com.cinema.modelos;
-    public abstract class Titulo  implements Comparable<Titulo> {
+import com.google.gson.annotations.SerializedName;
+
+public abstract class Titulo  implements Comparable<Titulo> {
+        @SerializedName("Titulo")
     private String nomeFilme;
+        @SerializedName("AnoLancamento")
     private int anoLancamento;
     private boolean assinaturaVip;
     private int totalAvaliacoes;
@@ -37,21 +41,26 @@ package br.com.cinema.modelos;
     }
 
 
-    public void exibirFichaFilme() {
-//        System.out.println("Nome do br.com.cinema.modelos.Filme: " + nomeFilme);
-//        System.out.println("Ano do Lançamento: " + anoLancamento);
-    }
+    public void exibirFichaFilme() {}
 
     public void avaliar(double avaliacao) {
         totalAvaliacoes++;
         somaAvaliacoes += avaliacao;
         mediaAvaliacao = somaAvaliacoes / totalAvaliacoes;
     }
+
     @Override
         public int compareTo(Titulo outroTitulo) {
             return this.nomeFilme.compareTo(outroTitulo.getNomeFilme());
         }
 
-        public abstract void Serie();
+    @Override
+    public String toString() {
+        return
+                "nomeFilme='" + nomeFilme + '\'' +
+                ", anoLancamento=" + anoLancamento;
+    }
+
+    public abstract void Serie();
     }
 

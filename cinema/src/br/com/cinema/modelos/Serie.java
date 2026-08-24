@@ -45,7 +45,7 @@ public class Serie extends Titulo {
         System.out.println("\nNome da Serie: " + getNomeFilme());
         System.out.println("Temporadas: " + temporadas);
         if (ativa == true) {
-            System.out.println("Ativa: Sim");
+            System.out.println("Ativa: Sim, " + "está na " + getTemporadas() + "° temporada");
         } else {
             System.out.println("Ativa: Não");
         }
