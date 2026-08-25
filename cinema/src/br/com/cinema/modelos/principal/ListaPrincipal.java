@@ -29,7 +29,7 @@ public class ListaPrincipal {
         lista.add(Serie1);
 
         Collections.sort(lista);
-        System.out.println("\nTítulos em ordem alfabética:");
+        System.out.println("\nTítulos em ordem numérica:");
         for (int i = 0; i < lista.size(); i++) {
             System.out.println((i + 1) + ". " + lista.get(i).getNomeFilme() + " (" + lista.get(i).getAnoLancamento() + ")" +
                     "\nClassificação: " + (lista.get(i) instanceof Filme filme ? filme.getClassificacao() : "N/A"));
