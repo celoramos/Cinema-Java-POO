@@ -27,13 +27,11 @@ public class BuscaPrincipal {
                 .build();
         HttpResponse<String> response = client
                 .send(request, HttpResponse.BodyHandlers.ofString());
-
         String json = response.body();
-        System.out.println(json);
 
         Gson gson = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE).create();
         TituloOMDB meuTituloOMDB = gson.fromJson(json, TituloOMDB.class);
-        System.out.println(meuTituloOMDB.title() + " - " + meuTituloOMDB.year() + " - " + meuTituloOMDB.runtime());
+        System.out.println("Nome do filme: " + meuTituloOMDB.title() + "\nAno de Lançamento: " + meuTituloOMDB.year() + "\nDuração: " + meuTituloOMDB.runtime());
     }
 }
 
