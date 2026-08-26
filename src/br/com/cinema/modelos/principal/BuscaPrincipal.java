@@ -1,7 +1,10 @@
 package br.com.cinema.modelos.principal;
 import br.com.cinema.modelos.Titulo;
 import br.com.cinema.modelos.TituloOMDB;
+import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.net.URI;
@@ -28,9 +31,9 @@ public class BuscaPrincipal {
         String json = response.body();
         System.out.println(json);
 
-        Gson gson = new Gson();
+        Gson gson = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE).create();
         TituloOMDB meuTituloOMDB = gson.fromJson(json, TituloOMDB.class);
-        System.out.println(meuTituloOMDB);
+        System.out.println(meuTituloOMDB.title() + " - " + meuTituloOMDB.year() + " - " + meuTituloOMDB.runtime());
     }
 }
 
