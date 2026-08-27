@@ -19,7 +19,6 @@ public abstract class Titulo  implements Comparable<Titulo> {
     public Titulo(TituloOMDB meuTituloOMDB) {
         this.nomeFilme = meuTituloOMDB.title();
         this.anoLancamento = Integer.parseInt(meuTituloOMDB.year());
-
     }
 
     public void setNomeFilme(String nomeFilme) {
