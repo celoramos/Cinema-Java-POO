@@ -20,18 +20,19 @@ public class BuscaPrincipal {
         var buscarFilme = scanner.nextLine();
 
         String urlBusca = "http://www.omdbapi.com/?t=" + buscarFilme + "&apikey=bd22c3ca";
-        HttpClient client = HttpClient.newHttpClient();
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(urlBusca))
-                .build();
-
-        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-        String json = response.body();
-
-        Gson gson = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE).create();
-        TituloOMDB meuTituloOMDB = gson.fromJson(json, TituloOMDB.class);
-
         try {
+            HttpClient client = HttpClient.newHttpClient();
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create(urlBusca))
+                    .build();
+
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            String json = response.body();
+
+            Gson gson = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE).create();
+            TituloOMDB meuTituloOMDB = gson.fromJson(json, TituloOMDB.class);
+
+
             int ano = Integer.parseInt(meuTituloOMDB.year());
             Titulo meuTitulo = new Filme(meuTituloOMDB.title(), ano);
 
@@ -49,6 +50,9 @@ public class BuscaPrincipal {
 
         } catch (NumberFormatException e) {
             System.out.println("Erro: " + e.getMessage());
+        } catch (IllegalArgumentException e) {
+            System.out.println("Erro de argumento: " + e.getMessage());
         }
+        System.out.println("O programa será finalizado");
     }
 }
