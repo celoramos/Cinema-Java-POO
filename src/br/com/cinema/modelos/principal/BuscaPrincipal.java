@@ -14,29 +14,36 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class BuscaPrincipal {
   public static void main(String[] args) throws IOException, InterruptedException {
     Scanner scanner = new Scanner(System.in);
-    String busca = "";
+    String find = "";
+    List<Titulo> titulos = new ArrayList<>();
+    Gson gson = new GsonBuilder()
+            .setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE)
+            .setPrettyPrinting()
+            .create();
 
-    while (!busca.equals("sair")) {
+    while (!find.equalsIgnoreCase("sair")) {
       System.out.print("Digite o nome de um filme (ou 'sair' para encerrar): ");
       var buscarFilme = scanner.nextLine();
-      busca = buscarFilme;
+      find = buscarFilme;
+      if (find.equals("sair")) {
+        break;
+      }
 
       String urlBusca =
               "http://www.omdbapi.com/?t=" + buscarFilme.replace(" ", "+") + "&apikey=bd22c3ca";
       try {
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder().uri(URI.create(urlBusca)).build();
-
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
         String json = response.body();
 
-        Gson gson =
-                new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE).create();
         TituloOMDB meuTituloOMDB = gson.fromJson(json, TituloOMDB.class);
 
         String anoTexto = meuTituloOMDB.year();
@@ -61,9 +68,8 @@ public class BuscaPrincipal {
           System.out.println("Duração: " + horas + " hr e " + (minutos % 60) + " minutos");
         }
 
-        FileWriter escrita = new FileWriter("filmes.txt");
-        escrita.write(meuTitulo.getNomeFilme() + " - " + meuTitulo.getAnoLancamento() + " - " + horas + " hrs e " + (minutos % 60) + " minutos\n");
-        escrita.close();
+
+        titulos.add(meuTitulo);
       } catch (NumberFormatException e) {
         System.out.println("Erro: " + e.getMessage());
       } catch (IllegalArgumentException e) {
@@ -71,6 +77,22 @@ public class BuscaPrincipal {
       } catch (ErroConversaoDeAnoException e) {
         System.out.println("Erro de conversão de ano: " + e.getMessage());
       }
+
+
     }
+    System.out.println("Filmes encontrados:");
+    for (int Titulo = 0; Titulo < titulos.size(); Titulo++) {
+      System.out.println(
+              (Titulo + 1)
+                      + ". "
+                      + titulos.get(Titulo).getNomeFilme()
+                      + " ("
+                      + titulos.get(Titulo).getAnoLancamento()
+                      + ")");
+
+    }
+    FileWriter writer = new FileWriter("filmes.json");
+    writer.write(gson.toJson(titulos));
+    writer.close();
   }
 }
