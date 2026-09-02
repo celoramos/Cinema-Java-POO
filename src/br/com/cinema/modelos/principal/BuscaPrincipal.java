@@ -23,7 +23,7 @@ public class BuscaPrincipal {
     Scanner scanner = new Scanner(System.in);
     String find = "";
     List<Titulo> titulos = new ArrayList<>();
-    Gson gson = new GsonBuilder()
+    var gson = new GsonBuilder()
             .setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE)
             .setPrettyPrinting()
             .create();
@@ -53,7 +53,7 @@ public class BuscaPrincipal {
         }
 
         int ano = Integer.parseInt(anoTexto);
-        Titulo meuTitulo = new Filme(meuTituloOMDB.title(), ano);
+        var meuTitulo = new Filme(meuTituloOMDB.title(), ano);
 
         String runtime = meuTituloOMDB.runtime();
         int minutos = Integer.parseInt(runtime.replaceAll("[^0-9]", "").trim());
@@ -91,7 +91,7 @@ public class BuscaPrincipal {
                       + ")");
 
     }
-    FileWriter writer = new FileWriter("filmes.json");
+    var writer = new FileWriter("filmes.json");
     writer.write(gson.toJson(titulos));
     writer.close();
   }
